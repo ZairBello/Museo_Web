@@ -1,11 +1,19 @@
+import { useState } from "react";
 import { MdMuseum } from "react-icons/md";
 import { FaTicketAlt } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
+import { Search } from "../Search";
 
 const Navbar = () => {
+  const [ShowSearch, setShowSearch] = useState(false);
+
+  const handleSearch = () => {
+    setShowSearch(!ShowSearch);
+  };
+
   return (
-    <nav className="bg-black text-white w-full h-16 p-3">
-      <div className="flex justify-between items-center h-full">
+    <nav className="bg-black text-white w-full h-16 ">
+      <div className="flex justify-between items-center h-full p-3">
         <div className="flex items-center gap-2">
           <MdMuseum className="text-3xl" />
           <h1 className="text-3xl font-bold">Museum</h1>
@@ -15,14 +23,13 @@ const Navbar = () => {
           <a href="#Pay" className="p-3 text-2xl">
             <FaTicketAlt />
           </a>
-          <button className="p-2">
-            EN
-            </button>
-          <a href="#" className="p-2 text-2xl">
+          <button className="p-2">EN</button>
+          <button className="p-2 text-2xl" onClick={handleSearch}>
             <IoIosSearch />
-          </a>
+          </button>
         </ul>
       </div>
+      <Search ShowSearch={ShowSearch}/>
     </nav>
   );
 };
